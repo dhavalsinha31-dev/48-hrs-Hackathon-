@@ -11,7 +11,6 @@ const app = express();
 const PORT = 5000;
 const DB_PATH = path.join(__dirname, "db.json");
 
-// Middleware
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin) return callback(null, true);
@@ -33,12 +32,11 @@ app.use(session({
     cookie: {
         httpOnly: true,
         sameSite: "lax",
-        secure: false, // http only on localhost
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        secure: false,
+        maxAge: 24 * 60 * 60 * 1000
     }
 }));
 
-// Mutex for database access
 let dbLock = Promise.resolve();
 
 async function acquireLock() {
@@ -52,7 +50,6 @@ async function acquireLock() {
     return release;
 }
 
-// DB helper functions
 async function readDB() {
     const release = await acquireLock();
     try {
@@ -80,14 +77,12 @@ async function writeDB(data) {
     }
 }
 
-// Clearance level hierarchy mapping
 const clearanceHierarchy = {
     "LEVEL_1": 1,
     "LEVEL_2": 2,
     "LEVEL_3": 3
 };
 
-// Clearance Guard Middleware
 async function clearanceGuard(req, res, next) {
     if (!req.session || !req.session.user) {
         return res.status(401).json({ error: "Unauthorized. Active session required." });
@@ -96,7 +91,6 @@ async function clearanceGuard(req, res, next) {
     const userClearanceStr = req.session.user.clearance;
     const userClearanceVal = clearanceHierarchy[userClearanceStr] || 0;
 
-    // Route-specific logic
     if (req.method === "POST" && req.path === "/api/nexus/tasks") {
         const requiredClearanceStr = req.body.clearanceRequired;
         if (!requiredClearanceStr || !clearanceHierarchy[requiredClearanceStr]) {
@@ -121,7 +115,6 @@ async function clearanceGuard(req, res, next) {
             if (userClearanceVal < requiredClearanceVal) {
                 return res.status(403).json({ error: "Forbidden. Insufficient clearance level." });
             }
-            // Attach task and db to req so we don't have to read/find them again
             req.db = db;
             req.task = task;
             return next();
@@ -133,9 +126,6 @@ async function clearanceGuard(req, res, next) {
     next();
 }
 
-// API Routes
-
-// GET /api/auth/me - check session state
 app.get("/api/auth/me", (req, res) => {
     if (req.session && req.session.user) {
         res.json({ authenticated: true, user: req.session.user });
@@ -144,7 +134,6 @@ app.get("/api/auth/me", (req, res) => {
     }
 });
 
-// POST /api/auth/login - authenticate user
 app.post("/api/auth/login", async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -158,7 +147,6 @@ app.post("/api/auth/login", async (req, res) => {
             return res.status(401).json({ error: "Invalid username or password." });
         }
 
-        // Attach user object (minus password) to req.session.user
         const sessionUser = { ...user };
         delete sessionUser.password;
         req.session.user = sessionUser;
@@ -169,7 +157,6 @@ app.post("/api/auth/login", async (req, res) => {
     }
 });
 
-// POST /api/auth/logout - destroy session
 app.post("/api/auth/logout", (req, res) => {
     if (!req.session) {
         return res.json({ success: true });
@@ -178,12 +165,11 @@ app.post("/api/auth/logout", (req, res) => {
         if (err) {
             return res.status(500).json({ error: "Could not log out." });
         }
-        res.clearCookie("connect.sid"); // default cookie name
+        res.clearCookie("connect.sid");
         res.json({ success: true });
     });
 });
 
-// GET /api/nexus/tasks - retrieve non-expired tasks and filter out expired ones from db.json
 app.get("/api/nexus/tasks", async (req, res) => {
     try {
         const db = await readDB();
@@ -204,7 +190,6 @@ app.get("/api/nexus/tasks", async (req, res) => {
     }
 });
 
-// POST /api/nexus/tasks - add new task (Protected)
 app.post("/api/nexus/tasks", clearanceGuard, async (req, res) => {
     const { description, clearanceRequired } = req.body;
     if (!description || !clearanceRequired) {
@@ -217,7 +202,7 @@ app.post("/api/nexus/tasks", clearanceGuard, async (req, res) => {
             id: `task_${uuidv4().replace(/-/g, "").substring(0, 8)}`,
             description,
             clearanceRequired,
-            expirationTimestamp: Date.now() + 10 * 60 * 1000 // 10 minutes into the future
+            expirationTimestamp: Date.now() + 10 * 60 * 1000
         };
 
         db.tasks.push(newTask);
@@ -229,7 +214,6 @@ app.post("/api/nexus/tasks", clearanceGuard, async (req, res) => {
     }
 });
 
-// DELETE /api/nexus/tasks/:id - delete task (Protected)
 app.delete("/api/nexus/tasks/:id", clearanceGuard, async (req, res) => {
     const db = req.db || await readDB();
     const taskId = req.params.id;

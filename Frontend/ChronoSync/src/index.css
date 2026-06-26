@@ -6,7 +6,6 @@
   --bg-card: rgba(15, 23, 42, 0.45);
   --border-glow: rgba(0, 255, 204, 0.2);
   
-  /* Neons */
   --neon-cyan: #00ffcc;
   --neon-blue: #0099ff;
   --neon-amber: #ff9f00;
@@ -44,7 +43,6 @@ body {
   font-family: var(--font-sans);
 }
 
-/* CRT Screen Scanline Overlay Effect */
 body::after {
   content: " ";
   display: block;
@@ -60,7 +58,6 @@ body::after {
   opacity: 0.85;
 }
 
-/* Custom Scrollbar for Sci-Fi aesthetic */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -81,7 +78,6 @@ body::after {
   box-shadow: 0 0 10px var(--neon-cyan);
 }
 
-/* Glow effects */
 .glow-cyan {
   box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
   border: 1px solid var(--neon-cyan);
@@ -102,7 +98,6 @@ body::after {
   border: 1px solid var(--neon-green);
 }
 
-/* Animations */
 @keyframes pulseGlow {
   0%, 100% {
     opacity: 0.8;

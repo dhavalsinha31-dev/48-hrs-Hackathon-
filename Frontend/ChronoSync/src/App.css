@@ -1,12 +1,9 @@
-/* ChronoSync Operations Interface Styles */
-
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Auth Portal Interface (Login Terminal) */
 .auth-container {
   display: flex;
   justify-content: center;
@@ -28,7 +25,6 @@
   overflow: hidden;
 }
 
-/* Terminal Header Scanner Overlay */
 .terminal-card::before {
   content: "";
   position: absolute;
@@ -140,7 +136,6 @@
   text-align: center;
 }
 
-/* Operations Dashboard Layout */
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -246,7 +241,6 @@
   gap: 30px;
 }
 
-/* System Stats Row */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -283,7 +277,6 @@
   text-shadow: 0 0 8px rgba(5, 255, 96, 0.3);
 }
 
-/* Creator Drawer */
 .task-creator-panel {
   background: var(--bg-panel);
   border: 1px solid rgba(0, 255, 204, 0.15);
@@ -349,7 +342,6 @@
   padding: 0 30px;
 }
 
-/* Tasks Grid Dashboard */
 .operations-dashboard {
   display: flex;
   flex-direction: column;
@@ -507,7 +499,6 @@
   cursor: not-allowed;
 }
 
-/* Empty state styling */
 .empty-tasks {
   background: var(--bg-panel);
   border: 1px dashed rgba(255, 255, 255, 0.07);
@@ -539,7 +530,6 @@
   max-width: 400px;
 }
 
-/* Responsive Overrides */
 @media (max-width: 768px) {
   .ops-header {
     flex-direction: column;

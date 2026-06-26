@@ -20,7 +20,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [systemTime, setSystemTime] = useState(Date.now());
 
-  // Check auth status on mount
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -39,7 +38,6 @@ function App() {
     checkAuth();
   }, []);
 
-  // Update clock every second when authenticated
   useEffect(() => {
     if (!user) return;
     const timer = setInterval(() => {
@@ -48,7 +46,6 @@ function App() {
     return () => clearInterval(timer);
   }, [user]);
 
-  // Fetch tasks from API
   const fetchTasks = async (currentUser = user) => {
     if (!currentUser) return;
     try {
@@ -66,7 +63,6 @@ function App() {
     }
   };
 
-  // Re-fetch tasks if any task has expired
   useEffect(() => {
     if (!user || tasks.length === 0) return;
     const hasExpired = tasks.some(t => t.expirationTimestamp < systemTime);
@@ -75,7 +71,6 @@ function App() {
     }
   }, [systemTime, tasks, user]);
 
-  // Handle Login
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!username || !password) {
@@ -107,7 +102,6 @@ function App() {
     }
   };
 
-  // Handle Logout
   const handleLogout = async () => {
     try {
       await fetch(`${API_BASE}/auth/logout`, {
@@ -122,7 +116,6 @@ function App() {
     }
   };
 
-  // Handle Task Creation
   const handleCreateTask = async (e) => {
     e.preventDefault();
     if (!newTaskDesc.trim()) return;
@@ -150,7 +143,6 @@ function App() {
     }
   };
 
-  // Handle Task Deletion (Complete)
   const handleDeleteTask = async (id) => {
     setError("");
     try {
@@ -171,7 +163,6 @@ function App() {
     }
   };
 
-  // Helper to format countdown
   const formatCountdown = (expirationTimestamp) => {
     const remainingMs = expirationTimestamp - systemTime;
     if (remainingMs <= 0) return "00:00";
@@ -181,7 +172,6 @@ function App() {
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  // Helper to check if countdown is urgent (<= 60 seconds)
   const isUrgent = (expirationTimestamp) => {
     const remainingMs = expirationTimestamp - systemTime;
     return remainingMs > 0 && remainingMs <= 60000;
