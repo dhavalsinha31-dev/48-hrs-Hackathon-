@@ -1,0 +1,19 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.3
+2 info using node@v22.18.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:d:\Web Dev Practice Projects\Webnd Summer\48 hrs Hackathon\Backend\.npmrc
+5 silly config load:file:C:\Users\Dhaval\.npmrc
+6 silly config load:file:C:\Users\Dhaval\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm view nodemon description dist-tags.latest homepage version time
+8 verbose argv "view" "--json" "--" "nodemon" "description" "dist-tags.latest" "homepage" "version" "time"
+9 verbose logfile logs-max:10 dir:d:\Web Dev Practice Projects\Webnd Summer\48 hrs Hackathon\Backend\.npm-cache\_logs\2026-06-26T16_35_18_461Z-
+10 verbose logfile d:\Web Dev Practice Projects\Webnd Summer\48 hrs Hackathon\Backend\.npm-cache\_logs\2026-06-26T16_35_18_461Z-debug-0.log
+11 silly logfile done cleaning log files
+12 http fetch GET 200 https://registry.npmjs.org/nodemon 113ms (cache revalidated)
+13 verbose cwd d:\Web Dev Practice Projects\Webnd Summer\48 hrs Hackathon\Backend
+14 verbose os Windows_NT 10.0.26200
+15 verbose node v22.18.0
+16 verbose npm  v10.9.3
+17 verbose exit 0
+18 info ok

@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-space: #050811;
+  --bg-panel: rgba(10, 15, 30, 0.75);
+  --bg-card: rgba(15, 23, 42, 0.45);
+  --border-glow: rgba(0, 255, 204, 0.2);
+  
+  /* Neons */
+  --neon-cyan: #00ffcc;
+  --neon-blue: #0099ff;
+  --neon-amber: #ff9f00;
+  --neon-red: #ff2a5f;
+  --neon-green: #05ff60;
+  --text-primary: #e2e8f0;
+  --text-muted: #64748b;
+  
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Orbitron', sans-serif;
+  
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background-color: var(--bg-space);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-space);
+  background-image: 
+    linear-gradient(rgba(16, 24, 48, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 24, 48, 0.25) 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+}
+
+/* CRT Screen Scanline Overlay Effect */
+body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 99999;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Custom Scrollbar for Sci-Fi aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-space);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 204, 0.25);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+  border: 1px solid var(--neon-cyan);
+}
+
+.glow-amber {
+  box-shadow: 0 0 15px rgba(255, 159, 0, 0.2);
+  border: 1px solid var(--neon-amber);
+}
+
+.glow-red {
+  box-shadow: 0 0 15px rgba(255, 42, 95, 0.2);
+  border: 1px solid var(--neon-red);
+}
+
+.glow-green {
+  box-shadow: 0 0 15px rgba(5, 255, 96, 0.2);
+  border: 1px solid var(--neon-green);
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 2px var(--neon-cyan));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px var(--neon-cyan));
+  }
+}
+
+@keyframes terminalBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes textScan {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+
+@keyframes borderFlicker {
+  0%, 100% { border-color: rgba(0, 255, 204, 0.2); }
+  50% { border-color: rgba(0, 255, 204, 0.6); }
+}
+
+.blink {
+  animation: terminalBlink 1s infinite;
+}
+

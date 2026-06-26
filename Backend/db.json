@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "username": "commander",
+      "password": "commander123",
+      "clearance": "LEVEL_3"
+    },
+    {
+      "username": "officer",
+      "password": "officer123",
+      "clearance": "LEVEL_2"
+    },
+    {
+      "username": "operator",
+      "password": "operator123",
+      "clearance": "LEVEL_1"
+    }
+  ],
+  "tasks": []
+}

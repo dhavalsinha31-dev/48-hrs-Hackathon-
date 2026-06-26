@@ -1,0 +1,31 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.3
+2 info using node@v22.18.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:D:\Web Dev Practice Projects\Webnd Summer\48 hrs Hackathon\Backend\.npmrc
+5 silly config load:file:C:\Users\Dhaval\.npmrc
+6 silly config load:file:C:\Users\Dhaval\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm run dev
+8 verbose argv "run" "dev"
+9 verbose logfile logs-max:10 dir:D:\Web Dev Practice Projects\Webnd Summer\48 hrs Hackathon\Backend\.npm-cache\_logs\2026-06-26T16_34_42_998Z-
+10 verbose logfile D:\Web Dev Practice Projects\Webnd Summer\48 hrs Hackathon\Backend\.npm-cache\_logs\2026-06-26T16_34_42_998Z-debug-0.log
+11 silly logfile done cleaning log files
+12 verbose stack Error: Missing script: "dev"
+12 verbose stack
+12 verbose stack To see a list of scripts, run:
+12 verbose stack   npm run
+12 verbose stack     at #run (C:\Program Files\nodejs\node_modules\npm\lib\commands\run-script.js:111:13)
+12 verbose stack     at async RunScript.exec (C:\Program Files\nodejs\node_modules\npm\lib\commands\run-script.js:40:7)
+12 verbose stack     at async Npm.exec (C:\Program Files\nodejs\node_modules\npm\lib\npm.js:207:9)
+12 verbose stack     at async module.exports (C:\Program Files\nodejs\node_modules\npm\lib\cli\entry.js:74:5)
+13 error Missing script: "dev"
+13 error
+13 error To see a list of scripts, run:
+13 error   npm run
+14 verbose cwd D:\Web Dev Practice Projects\Webnd Summer\48 hrs Hackathon\Backend
+15 verbose os Windows_NT 10.0.26200
+16 verbose node v22.18.0
+17 verbose npm  v10.9.3
+18 verbose exit 1
+19 verbose code 1
+20 error A complete log of this run can be found in: D:\Web Dev Practice Projects\Webnd Summer\48 hrs Hackathon\Backend\.npm-cache\_logs\2026-06-26T16_34_42_998Z-debug-0.log
